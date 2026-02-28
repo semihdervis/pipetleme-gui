@@ -248,9 +248,9 @@ class MyApp(QMainWindow):
         if self.can_bus is None:
             print("CAN bus not available!")
             return
-        x_int, y_int = int(round(x)), int(round(y))
-        x_data = list(struct.pack('<h', x_int)) + [0] * 6
-        y_data = list(struct.pack('<h', y_int)) + [0] * 6
+        x_int, y_int = int(round(x)) + 100, int(round(y)) + 100
+        x_data = list(struct.pack('>H', x_int)) + [0] * 6
+        y_data = list(struct.pack('>H', y_int)) + [0] * 6
         x_hex = ''.join(f'{b:02X}' for b in x_data)
         y_hex = ''.join(f'{b:02X}' for b in y_data)
         try:
