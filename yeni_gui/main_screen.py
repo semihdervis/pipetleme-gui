@@ -32,6 +32,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from main_screen import MyApp
 import time
+import struct
+import can
 
 
 # from reagentLoad import reagentDefine_MainWindow  # settings_Dialog sınıfını settings.py'den alıyoruz
@@ -174,6 +176,13 @@ class MyApp(QMainWindow):
 
         self.can_sim = CanSimHandler()
         self.can_sim.message_received.connect(self.can_message_received)
+
+        try:
+            self.can_bus = can.Bus(interface='socketcan', channel='can0', bitrate=500000)
+            print("CAN bus (can0) initialized.")
+        except Exception as e:
+            self.can_bus = None
+            print(f"CAN bus init error: {e}")
     #     self.can_sim.message_received.connect(self.can_position_received)
 
     # def can_position_received(self, position):
@@ -234,6 +243,30 @@ class MyApp(QMainWindow):
                                                             self.ui.stackedWidget.setCurrentWidget(self.ui.log_page),
                                                             self.active_page_changed(self.ui.log_toolButton),
                                                             self.logger.log(ACTIONS["log_page"], self.user)))
+
+    def send_can_position(self, x, y):
+        if self.can_bus is None:
+            print("CAN bus not available!")
+            return
+        x_int, y_int = int(round(x)), int(round(y))
+        x_data = list(struct.pack('<h', x_int)) + [0] * 6
+        y_data = list(struct.pack('<h', y_int)) + [0] * 6
+        x_hex = ''.join(f'{b:02X}' for b in x_data)
+        y_hex = ''.join(f'{b:02X}' for b in y_data)
+        try:
+            self.can_bus.send(can.Message(arbitration_id=0x001, data=x_data, is_extended_id=False))
+            print(f"CAN TX -> ID: 0x001  X: {x_int:>6}  |  cansend can0 001#{x_hex}")
+        except can.CanError as e:
+            print(f"CAN send error (X): {e}")
+        try:
+            self.can_bus.send(can.Message(arbitration_id=0x002, data=y_data, is_extended_id=False))
+            print(f"CAN TX -> ID: 0x002  Y: {y_int:>6}  |  cansend can0 002#{y_hex}")
+        except can.CanError as e:
+            print(f"CAN send error (Y): {e}")
+
+    def sim_move_to(self, x, y):
+        self.scene.pipette.wait(0, lambda x=x, y=y: self.send_can_position(x, y))
+        self.scene.pipette.move_to(x, y)
 
     def start_simulation(self):
         # ==================== HIZ ÇARPANI AYARI ====================
@@ -300,23 +333,23 @@ class MyApp(QMainWindow):
         #self.scene.pipette.move_to(520, 720) # card3 bottom left
 
         maps = load_or_compute()
-        self.scene.pipette.move_to(*maps["liss"])
+        self.sim_move_to(*maps["liss"])
         self.scene.pipette.aspirate(1200)
         # ================== Put liss into dilute plate =======================
         for i in range(12):
 
-            self.scene.pipette.move_to(*maps["d1"][i // 8, i % 8])
+            self.sim_move_to(*maps["d1"][i // 8, i % 8])
             self.scene.pipette.dispense(100)
 
 
         # =============== Prepare solution and place onto jel cards ====================
         for i in range(12):
             # Aspirate sample from sample plate
-            self.scene.pipette.move_to(*maps["s1"][i])
+            self.sim_move_to(*maps["s1"][i])
             self.scene.pipette.aspirate(100)
 
             # Dispense sample into dilute plate
-            self.scene.pipette.move_to(*maps["d1"][i // 8, i % 8])
+            self.sim_move_to(*maps["d1"][i // 8, i % 8])
             self.scene.pipette.dispense(100)
 
             # Mix the solution
@@ -328,12 +361,12 @@ class MyApp(QMainWindow):
 
             # Dispense sample onto jel cards
             for j in range(8):
-                self.scene.pipette.move_to(*maps["c1"][i, j])
+                self.sim_move_to(*maps["c1"][i, j])
                 self.scene.pipette.dispense(1000/8)
 
 
             # Wash the pipette
-            self.scene.pipette.move_to(*maps["wash"])
+            self.sim_move_to(*maps["wash"])
             self.scene.pipette.aspirate(500)
             self.scene.pipette.dispense(500)
             self.scene.pipette.aspirate(500)
