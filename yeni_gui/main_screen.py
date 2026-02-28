@@ -7,7 +7,7 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import Qt
 from PyQt5 import QtGui
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QListWidget
-from PyQt5.QtGui import QIcon, QPixmap, QIntValidator, QStandardItemModel
+from PyQt5.QtGui import QIcon, QPixmap, QIntValidator, QStandardItemModel, QFont
 from PyQt5.uic import loadUi
 from uis.main_screen_v2_0_1 import Ui_MainWindow
 from uis.giris import Ui_Login as giris_Ui_Form
@@ -100,7 +100,11 @@ class MyApp(QMainWindow):
         self.ui.setupUi(self)
 
         
-        self.button_icons = json.load(open("yeni_gui/button_icons.json", "r"))
+        with open(os.path.join("yeni_gui", "button_icons.json"), "r") as f:
+            self.button_icons = json.load(f)
+        for key, value in self.button_icons.items():
+            if isinstance(value, list):
+                self.button_icons[key] = [os.path.normpath(p) for p in value]
         self.button_icon_size = self.button_icons["icon_size"]
 
         self.set_lineedit_validators()
@@ -607,5 +611,10 @@ class MyApp(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
+    if sys.platform.startswith("linux"):
+        QFont.insertSubstitution("Calibri", "DejaVu Sans")
+        QFont.insertSubstitution("Arial", "DejaVu Sans")
+
     MainApp = MyApp(None)
     sys.exit(app.exec_())
