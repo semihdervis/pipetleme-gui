@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Login</class>
+ <widget class="QWidget" name="Login">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>718</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color : </string>
+  </property>
+  <widget class="QLabel" name="label_logo">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>40</y>
+     <width>501</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+        border-radius: 10px; /* Köşe yarıçapı */
+        background-color: rgb(15, 32, 56); /* Buton arka plan rengi */
+        color: white; /* Yazı rengi */
+        padding: 10px; /* İç boşluk */
+		border: 1px solid black;
+    }
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>src/odakbeyaz.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="combo_lang">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>610</y>
+     <width>69</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QComboBox {
+        border-radius: 10px;				 /* Köşe yarıçapı */
+        background-color: lightgrey;	 /* Buton arka plan rengi */
+        color: balck;								 /* Yazı rengi */
+        padding: 10px;						 /* İç boşluk */
+		border: 2px solid grey;			 /* Kenarlık */
+    }</string>
+   </property>
+   <property name="editable">
+    <bool>false</bool>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QComboBox::AdjustToContents</enum>
+   </property>
+   <property name="frame">
+    <bool>true</bool>
+   </property>
+   <item>
+    <property name="text">
+     <string>EN</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>TR</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_user_icon">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>390</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>src/user.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_password_icon">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>460</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>src/password.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>390</y>
+     <width>341</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color : lightgrey ; border-radius: 10</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>460</y>
+     <width>341</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color : lightgrey ; border-radius: 10</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_username">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>390</y>
+     <width>271</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>17</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    background-color: lightgrey;  /* Arka plan rengi */
+    border: 1px solid lightgrey;  /* Kenarlık rengi ve kalınlığı */
+    border-radius: 5px;  /* Kenarları yuvarlatmak isterseniz */
+}
+</string>
+   </property>
+   <property name="placeholderText">
+    <string>Kullanıcı Adı</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_password">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>460</y>
+     <width>271</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>17</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    background-color: lightgrey;  /* Arka plan rengi */
+    border: 1px solid lightgrey;  /* Kenarlık rengi ve kalınlığı */
+    border-radius: 5px;  /* Kenarları yuvarlatmak isterseniz */
+}
+</string>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+   <property name="placeholderText">
+    <string>Şifre</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_enter">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>570</y>
+     <width>101</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+
+QPushButton {
+        border-radius: 10px; /* Köşe yarıçapı */
+       background-color :green; /* Buton arka plan rengi */
+        color: white; /* Yazı rengi */
+        padding: 10px; /* İç boşluk */
+		border: 2px solid black;
+    }
+    QPushButton:pressed {
+        background-color: darkgreen; /* Basılı olduğunda arka plan rengi */
+    }</string>
+   </property>
+   <property name="text">
+    <string>Giriş</string>
+   </property>
+  </widget>
+  <zorder>label_5</zorder>
+  <zorder>label_4</zorder>
+  <zorder>label_logo</zorder>
+  <zorder>combo_lang</zorder>
+  <zorder>label_user_icon</zorder>
+  <zorder>label_password_icon</zorder>
+  <zorder>lineEdit_username</zorder>
+  <zorder>lineEdit_password</zorder>
+  <zorder>button_enter</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

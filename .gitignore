@@ -1,0 +1,7 @@
+# Her seviyedeki __pycache__ klasörlerini ignore et
+**/__pycache__/
+
+# Bytecode dosyalarını ignore et
+**/*.pyc
+**/*.pyo
+**/*.pyd

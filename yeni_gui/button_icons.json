@@ -1,0 +1,18 @@
+{
+    "icon_size": 35,
+    "reagent_toolButton" : ["yeni_gui/uis/icons/new_v2/reagent.png", "yeni_gui/uis/icons/new_v2/reagent_white.png"],
+    "card_toolButton" : ["yeni_gui/uis/icons/new_v2/card.png", "yeni_gui/uis/icons/new_v2/card_white.png"],
+    "monitor_toolButton" : ["yeni_gui/uis/icons/new_v2/monitor.png", "yeni_gui/uis/icons/new_v2/monitor_white.png"],
+    "reagentDefine_toolButton" : ["yeni_gui/uis/icons/new_v2/reagent_define.png", "yeni_gui/uis/icons/new_v2/reagent_define_white.png"],
+    "cardDefine_toolButton" : ["yeni_gui/uis/icons/new_v2/card_define.png", "yeni_gui/uis/icons/new_v2/card_define_white.png"],
+    "liquid_toolButton" : ["yeni_gui/uis/icons/new_v2/liquid.png", "yeni_gui/uis/icons/new_v2/liquid_white.png"],
+    "sample_toolButton" : ["yeni_gui/uis/icons/new_v2/sample.png", "yeni_gui/uis/icons/new_v2/sample_white.png"],
+    "layout_toolButton" : ["yeni_gui/uis/icons/new_v2/layout.png", "yeni_gui/uis/icons/new_v2/layout_white.png"],
+    "run_toolButton" : ["yeni_gui/uis/icons/new_v2/run.png", "yeni_gui/uis/icons/new_v2/run_white.png"],
+    "pause_toolButton" : ["yeni_gui/uis/icons/new_v2/pause.png", "yeni_gui/uis/icons/new_v2/pause_white.png"],
+    "history_toolButton" : ["yeni_gui/uis/icons/new_v2/history.png", "yeni_gui/uis/icons/new_v2/history_white.png"],
+    "log_toolButton" : ["yeni_gui/uis/icons/new_v2/log.png", "yeni_gui/uis/icons/new_v2/log_white.png"],
+    "settings_toolButton" : ["yeni_gui/uis/icons/new_v2/settings.png", "yeni_gui/uis/icons/new_v2/settings_white.png"],
+    "about_toolButton" : ["yeni_gui/uis/icons/new_v2/about.png", "yeni_gui/uis/icons/new_v2/about_white.png"],
+    "test_toolButton" : ["yeni_gui/uis/icons/new_v2/test.png", "yeni_gui/uis/icons/new_v2/test_white.png"]
+}

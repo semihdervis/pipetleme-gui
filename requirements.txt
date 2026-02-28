@@ -1,0 +1,6 @@
+PyQt5>=5.15.0
+PyQt5-sip>=12.8.0
+
+numpy>=1.19.0
+
+python-can>=4.0.0
