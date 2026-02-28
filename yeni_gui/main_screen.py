@@ -248,19 +248,20 @@ class MyApp(QMainWindow):
         if self.can_bus is None:
             print("CAN bus not available!")
             return
-        x_int, y_int = int(round(x)) + 100, int(round(y)) + 100
-        x_data = list(struct.pack('>H', x_int)) + [0] * 6
-        y_data = list(struct.pack('>H', y_int)) + [0] * 6
+        x_val = int(round(x)) + 100
+        y_val = int(round(y)) + 100
+        x_data = list(bytes.fromhex(f"{x_val:016d}"))
+        y_data = list(bytes.fromhex(f"{y_val:016d}"))
         x_hex = ''.join(f'{b:02X}' for b in x_data)
         y_hex = ''.join(f'{b:02X}' for b in y_data)
         try:
             self.can_bus.send(can.Message(arbitration_id=0x001, data=x_data, is_extended_id=False))
-            print(f"CAN TX -> ID: 0x001  X: {x_int:>6}  |  cansend can0 001#{x_hex}")
+            print(f"CAN TX -> ID: 0x001  X: {x_val:>6}  |  cansend can0 001#{x_hex}")
         except can.CanError as e:
             print(f"CAN send error (X): {e}")
         try:
             self.can_bus.send(can.Message(arbitration_id=0x002, data=y_data, is_extended_id=False))
-            print(f"CAN TX -> ID: 0x002  Y: {y_int:>6}  |  cansend can0 002#{y_hex}")
+            print(f"CAN TX -> ID: 0x002  Y: {y_val:>6}  |  cansend can0 002#{y_hex}")
         except can.CanError as e:
             print(f"CAN send error (Y): {e}")
 
